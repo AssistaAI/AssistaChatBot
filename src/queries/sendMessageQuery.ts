@@ -15,15 +15,9 @@ export type MessageRequest = {
     body?: IncomingInput
 }
 
-export const sendMessageQuery = ({ chatflowid, apiHost = 'http://localhost:3000', body }: MessageRequest) =>
+export const sendMessageQuery = ({ chatflowid, apiHost, body }: MessageRequest) =>
     sendRequest<any>({
         method: 'POST',
-        url: `${apiHost}/api/v1/prediction/${chatflowid}`,
+        url: `${apiHost}/api/v1/companies/${chatflowid}/answer`,
         body
-    })
-
-export const isStreamAvailableQuery = ({ chatflowid, apiHost = 'http://localhost:3000' }: MessageRequest) =>
-    sendRequest<any>({
-        method: 'GET',
-        url: `${apiHost}/api/v1/chatflows-streaming/${chatflowid}`,
     })
